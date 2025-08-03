@@ -2,8 +2,18 @@
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 OUT_FILE=$SCRIPT_DIR/updates.txt
+WATCH_FILE=$SCRIPT_DIR/watch.txt
 
 find ~/.config -type d -name ".git" -prune | sed  -e 's|\.git$||' -e 's|^\.||' > "$OUT_FILE"
+
+if [[ -f "$WATCH_FILE" ]]; then
+    while IFS= read -r path;
+    do
+        if ! grep -qF "$path" "$OUT_FILE"; then
+            echo "$path" >> "$OUT_FILE"
+        fi
+    done < "$WATCH_FILE"
+fi
 
 while IFS= read -r path;
 do

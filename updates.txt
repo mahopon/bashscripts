@@ -1,0 +1,2 @@
+/home/mahopon/.config/nvim/
+/home/mahopon/bashscripts/
