@@ -1,8 +1,11 @@
 #!/bin/bash
 
+set -e
+
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 OUT_FILE=$SCRIPT_DIR/updates.txt
 WATCH_FILE=$SCRIPT_DIR/watch.txt
+source ~/.config/bashscripts/sshTarget.sh
 
 find ~/.config -type d -name ".git" -prune | sed  -e 's|\.git$||' -e 's|^\.||' > "$OUT_FILE"
 
@@ -23,6 +26,9 @@ do
         git add .
         git commit -m "Auto-update $(date +"%d-%m-%y")" > /dev/null 2>&1
         git push > /dev/null 2>&1
+        if [[ "$path" == *".config"* ]]; then
+            rsync -r "$path" "$TARGET_SSH"
+        fi
         echo "Auto pushed updates for $path"
     else
         echo "No updates for $path"
