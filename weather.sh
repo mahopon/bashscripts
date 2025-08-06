@@ -19,6 +19,8 @@ report=$(echo "$weather_period_json" | jq -r '
 }
 
 msmtp $EMAIL <<EOF
+From: Botto <$EMAIL_FROM>
+To: $EMAIL
 Subject: Daily Report $(date)
 Content-Type: text/html; charset=UTF-8:
 MIME-Version: 1.0
