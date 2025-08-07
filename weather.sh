@@ -14,7 +14,7 @@ report=$(echo "$weather_period_json" | jq -r '
     "</section>"),
     "\($records.timestamp)"
 ' | sed -e 's|Midnight|12 am|' -e 's|Midday|12 pm|' -e 's|to|-|') || {
-    echo "Report generation failed, exiting" >> ~/logs/weather/"$date_input".json
+    echo "Report generation failed, exiting" >> ~/logs/weather/"$date_input".log
     exit 1
 }
 
