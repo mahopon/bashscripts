@@ -1,0 +1,79 @@
+# ========================
+# CachyOS-style Starship
+# ========================
+
+# ------------------------
+# Left prompt
+# ------------------------
+format = """
+$python $directory $git_branch$git_state$git_status$cmd_duration$character
+"""
+
+# ------------------------
+# Right prompt
+# ------------------------
+right_format = "$memory_usage $time"
+
+# ------------------------
+# Python virtualenv
+# ------------------------
+[python]
+disabled = false
+format = "[(🐍 $virtualenv)]($style) "
+style = "bold green"
+symbol = ""
+detect_extensions = []
+detect_files = []
+
+# ------------------------
+# Directory
+# ------------------------
+[directory]
+disabled = false
+style = "bold cyan"
+truncation_length = 3
+read_only = " "
+
+# ------------------------
+# Git branch
+# ------------------------
+[git_branch]
+symbol = " "
+style = "bold purple"
+
+# ------------------------
+# Git status
+# ------------------------
+[git_status]
+style = "bold yellow"
+format = "($all_status $ahead$behind)"   # always valid
+# ------------------------
+# Command duration (left)
+# ------------------------
+[cmd_duration]
+min_time = 0        # show all commands
+style = "bold blue"
+
+# ------------------------
+# Character (prompt symbol)
+# ------------------------
+[character]
+success_symbol = "[❯](bold green) "
+error_symbol = "[❯](bold red) "
+
+# ------------------------
+# Memory usage (right)
+# ------------------------
+[memory_usage]
+disabled = false
+style = "bold magenta"
+format = "RAM [$ram_pct]($style)"
+
+# ------------------------
+# Time (right)
+# ------------------------
+[time]
+disabled = false
+format = "[$time]($style)"
+style = "dimmed white"
+
