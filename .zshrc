@@ -37,8 +37,24 @@ zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+unset ls
 alias ls='eza --icons --group-directories-first'
 alias ll='ls -la'
 
 zmodload zsh/datetime  # required for cmd_duration in Zsh
 eval "$(starship init zsh)"
+
+plugins=(
+  git
+  zsh-autosuggestions
+  zsh-history-substring-search
+)
+
+# Optional: improve autosuggestions color
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
+
+# Bind arrow keys for history substring search
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+
+. "$HOME/.local/bin/env"
