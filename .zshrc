@@ -42,4 +42,4 @@ bindkey '^E' autosuggest-accept                  # Ctrl+E: accept autosuggestion
 
 # --- Optional: datetime support ---
 zmodload zsh/datetime
-
+export PATH=$PATH:/usr/local/go/bin
